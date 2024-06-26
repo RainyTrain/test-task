@@ -1,10 +1,10 @@
-import { useRef, KeyboardEvent } from "react";
-import { Box, Button, TextField } from "@mui/material";
-import { Post, PostCard } from "@entities";
-import { ModalWindow } from "@shared";
+import { useRef, KeyboardEvent } from 'react';
+import { Box, Button, TextField } from '@mui/material';
+import { Post, PostCard } from '@entities';
+import { ModalWindow } from '@shared';
 
-import { useChangePost } from "./useChangePost";
-import { useModal } from "./useModal";
+import { useChangePost } from './useChangePost';
+import { useModal } from './useModal';
 
 interface ChangePostProps {
   post: Post;
@@ -17,11 +17,10 @@ export const ChangePost = (props: ChangePostProps) => {
 
   const textRef = useRef<HTMLInputElement>(null);
   const { isOpen, handleClose, handleOpen } = useModal();
-  const { changeBodyData, changeTitleData, changeToDefault, data } =
-    useChangePost({ post });
+  const { changeBodyData, changeTitleData, changeToDefault, data } = useChangePost({ post });
 
   const switchFocus = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Enter" && textRef.current) {
+    if (event.key === 'Enter' && textRef.current) {
       textRef.current.focus();
     }
   };
@@ -38,25 +37,21 @@ export const ChangePost = (props: ChangePostProps) => {
 
   return (
     <>
-      <PostCard
-        data={post}
-        remove={remove}
-        key={post.id}
-        onClick={handleOpen}
-      />
+      <PostCard data={post} remove={remove} key={post.id} onClick={handleOpen} />
       <ModalWindow handleClose={handleClose} isOpen={isOpen}>
         <Box
           width="100%"
           display="flex"
-          flexDirection={"column"}
+          flexDirection={'column'}
           gap={2}
           py={2}
           px={5}
           bgcolor="#B6D1DB"
-          sx={{ border: "2px solid grey" }}
+          sx={{
+            border: '2px solid grey',
+          }}
           position="relative"
-          borderRadius={4}
-        >
+          borderRadius={4}>
           <TextField
             id="standard-basic"
             label="Standard"
@@ -85,8 +80,7 @@ export const ChangePost = (props: ChangePostProps) => {
             flexDirection="column"
             mt={4}
             mx="auto"
-            gap={2}
-          >
+            gap={2}>
             <Button variant="contained" onClick={submitNewData} fullWidth>
               Update
             </Button>
